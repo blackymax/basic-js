@@ -6,13 +6,15 @@ module.exports = function createDreamTeam(members) {
 }
 
 let members1 = [];
-let str = '';
+
 
 
 for(let i = 0; i<members.length;i++){
-str = members[i].replace(/\s/g, '').substr(0,1).toUpperCase();
+  if(typeof(members[i]) === 'string') {
+let str = members[i].replace(/\s/g, '').substr(0,1).toUpperCase();
 
 members1.push(str)
+  }
 }
 
 // remove line with error and write your code here
