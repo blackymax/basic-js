@@ -1,5 +1,4 @@
 // const CustomError = require("../extensions/custom-error");
-
 class VigenereCipheringMachine {
 
   constructor(modification = true) {
@@ -7,58 +6,61 @@ class VigenereCipheringMachine {
   }
 
   encrypt(input, key) {
-      
+
     if (input === undefined || key === undefined) {
       throw new Error();
     }
-    let INPUT = input.toUpperCase().split('');
-    let KEY = key.toUpperCase();
-      let spaces = 0;
+
+    let iNPUT = input.toUpperCase().split('');
+    let kEY = key.toUpperCase();
+	  let spaces = 0;
   
-    for (let i = 0; i < INPUT.length; i++) {
-      let charCode = INPUT[i].codePointAt(0);
+    for (let i = 0; i < iNPUT.length; i++) {
+      let charCode = iNPUT[i].codePointAt(0);
       
       if (charCode >= 65 && charCode < 91) {
-        let charIndex = KEY.codePointAt((i - spaces) % key.length) - 65;
-        let SEARCH = charCode + charIndex;
-        if (SEARCH > 90) {
-          SEARCH -= 26;
+        let index = kEY.codePointAt((i - spaces) % key.length) - 65;
+        let search = charCode + index;
+        if (search > 90) {
+          search -= 26;
         }
-        INPUT[i] = String.fromCodePoint(SEARCH);
+        iNPUT[i] = String.fromCodePoint(search);
       } else {
         spaces++;
       }
     }
-      return this.direct ? INPUT.join('') : INPUT.reverse().join('');
+
+	  return this.direct ? iNPUT.join('') : iNPUT.reverse().join('');
   }
 
   decrypt(reverseInput, key) {
- 
+    // throw new CustomError('Not implemented');
+    // remove line with error and write your code here
 
     if (reverseInput === undefined || key === undefined) {
       throw new Error();
     }
 
-    let INPUT = reverseInput.toUpperCase().split('');
-    let KEY = key.toUpperCase();
-      let spaces = 0;
+    let iNPUT = reverseInput.toUpperCase().split('');
+    let kEY = key.toUpperCase();
+	  let spaces = 0;
   
-    for (let i = 0; i < res.length; i++) {
-      let charCode = INPUT[i].codePointAt(0);
+    for (let i = 0; i < iNPUT.length; i++) {
+      let charCode = iNPUT[i].codePointAt(0);
 
       if (charCode >= 65 && charCode < 91) {
-        let charIndex = KEY.codePointAt((i - spaces) % KEY.length) - 65;
-        let SEARCH = charCode - charIndex;
-        if (SEARCH < 65) {
-          SEARCH += 26;
+        let index = kEY.codePointAt((i - spaces) % key.length) - 65;
+        let search = charCode - index;
+        if (search < 65) {
+          search += 26;
         }
-        INPUT[i] = String.fromCodePoint(SEARCH);
+        iNPUT[i] = String.fromCodePoint(search);
       } else {
         spaces++;
       }
     }
 
-      return this.direct ? INPUT.join('') : INPUT.reverse().join('');
+	  return this.direct ? iNPUT.join('') : iNPUT.reverse().join('');
   }
 }
 
