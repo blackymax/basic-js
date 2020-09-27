@@ -1,25 +1,32 @@
-const CustomError = require("../extensions/custom-error");
+// const CustomError = require("../extensions/custom-error");
 
 const chainMaker = {
+  scepka : [],
   getLength() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+   return this.scepka.length;
+
   },
   addLink(value) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.scepka.push(value);
+    return this;
+
   },
   removeLink(position) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    if (!Number.isInteger(position) || this.scepka[position - 1] === undefined) {
+      this.scepka.length = 0;
+      throw new Error('Нееа, дядя, аккуратнее');
+    }
+    this.scepka.splice(position - 1, 1);
+    return this;
   },
   reverseChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.scepka = this.scepka.reverse();
+    return this;
   },
   finishChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    const res = '( ' + this.scepka.map((element) => '' + element).join(' )~~( ') + ' )';
+    this.scepka.length = 0;
+    return res;
   }
 };
 
